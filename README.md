@@ -15,7 +15,7 @@ user owned databases, allows auto-provisioing (building/configuring) of VM's, VM
 - LDAP Authentication
 
 ## Is this project complete?
-No, there is a lot more development needed.  Certain features not yet implemented are:
+No, there is a lot more that needs to be done.  Certain features not yet implemented are:
 - Zoom/Webex Integration (Sharing)
 - Snapshot Management
 - VM Power On/Off
