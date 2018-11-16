@@ -26,7 +26,7 @@ I'm honestly not sure how secure it is; I'm simply not there yet!
 
 ## Suggestions for Implementation
 I would highly suggest using this allong with a working PXE Booting solution.  That will provide a completely hands free VM Provisioning
-process for Non VMWare Administrators.  I would also use, if desired, SLAlchemy to build and support a more advanced Database structure, 
+process for Non VMWare Administrators.  I would also use, if desired, SQLAlchemy to build and support a more advanced Database structure, 
 using more advanced queries.
 
 ## How can I help?
