@@ -33,6 +33,6 @@ using more advanced queries.
 In any way you want!  Any suggestions, support, or improvement is welcome!
 
 Current Issues:
-- The VM Session Ticket used for Web Console works as expected, however the generated URL cannot be used with HTML iFrame tags.  An althernative would be to open the web console in a new tab, however I would prefer to keep it embedded into dashboard page.  Potential solutions include
+- The VM Session Ticket used for Web Console works as expected, however the generated URL cannot be used with HTML iFrame tags.  An alternative would be to open the web console in a new tab, however I would prefer to keep it embedded into dashboard page.  Potential solutions include
   - vCenter configuration to disable the vCenter X-XSS Headers to allow iFrame embedding.
   - Alternative embedding solution to iFrame.  I've found some suggestions online, however I did not have the time to try any of them   out.
