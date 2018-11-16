@@ -1,0 +1,29 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-1"><strong>{{session['Name']}}'s Virtual Machines</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>System Dashboard</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                Manage your Virtual Machines by selecting the VM from the ownership list below.  Jira tickets can also
+                be created if problems arise
+            </p>
+        </div>
+        <hr>
+        <button class="btn btn-info">Linux Management <i class="fa fa-diamond ml-1"></i></button>
+        <button class="btn btn-info">vCenter Administration <i class="fa fa-diamond ml-1"></i></button>
+    </div>
+
+    <p>{{url}}</p>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/addons/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+
+
+{% endblock %}

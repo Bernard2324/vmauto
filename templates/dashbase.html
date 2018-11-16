@@ -1,0 +1,95 @@
+{% include 'dashlayout.html' %}
+    <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Administrative Options</span>
+          <a class="d-flex align-items-center text-muted" href="#">
+            <span data-feather="edit"></span>
+          </a>
+        </h6>
+        {% if session.logged_in %}
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="/dashboard">
+              <span data-feather="settings"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/chef_admin">
+              <span data-feather="users"></span>
+              Administration
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/docs">
+              <span data-feather="layers"></span>
+              Documentation
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/terminal">
+              <span data-feather="activity"></span>
+              Advanced
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="message-square"></span>
+              WebEx Session
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/packages">
+              <span data-feather="git-merge"></span>
+              Package Selection
+            </a>
+          </li>
+        </ul>
+        {% else %}
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/docs">
+              <span data-feather="layers"></span>
+              Documentation
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">
+              <span data-feather="users"></span>
+              Registration
+            </a>
+          </li>
+        </ul>
+        {% endif %}
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Global Features</span>
+          <a class="d-flex align-items-center text-muted" href="#">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="/feedback">
+              <span data-feather="send"></span>
+              Feedback
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="calendar"></span>
+              Upcoming Features
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    </div>
+    {% block body %}{% endblock %}
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>

@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/" style="color: #17a2b8;"><i data-feather="settings"></i> Company Auto Provisioning</a>
+    <input class="form-control form-control-dark w-75" type="text" placeholder="Search" aria-label="Search" style="float: left;">
+    {% if session.logged_in %}
+    <a class="nav-link" href="/logout" style="color: #F0FFFF;"><i data-feather="log-out"></i> Logout</a>
+    <a class="nav-link" href="/dashboard" style="color: #F0FFFF;"><i data-feather="settings"></i> Dashboard</a>
+    <a class="nav-link" href="/provision" style="color: #F0FFFF;"><i data-feather="server"></i> Provision</a>
+    {% else %}
+    <a class="nav-link" href="/register" style="color: #F0FFFF;"><i data-feather="users"></i> Register</a>
+    <a class="nav-link" href="/login" style="color: #F0FFFF;"><i data-feather="log-in"></i> Login</a>
+    {% endif %}
+</nav>

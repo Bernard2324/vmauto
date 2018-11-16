@@ -1,0 +1,35 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-1"><strong>Open A Jira Issue</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>Jira Ticketing</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                Quickly and easily escalate issues with your Virtual Machine, by opening a ticket with Jira.
+            </p>
+        </div>
+        <hr>
+        <button class="btn btn-info">Linux Management <i class="fa fa-diamond ml-1"></i></button>
+        <button class="btn btn-info">vCenter Administration <i class="fa fa-diamond ml-1"></i></button>
+    </div>
+    <hr>
+    {% from "includes/_formhelpers.html" import render_field %}
+    <form method="POST" action="">
+        <div class="form-group">
+            <!-- {{ render_field(form.title, class_="form-control") }} -->
+            {% if form.title.render_kw.readonly %}
+                <input class="form-control" type="text" placeholder="Host {{identify}} Has an Issue" readonly>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ render_field(form.issue, class_="form-control") }}
+        </div>
+        <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+    </form>
+
+{% endblock %}

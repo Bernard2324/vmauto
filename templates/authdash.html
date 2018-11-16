@@ -1,0 +1,41 @@
+{% include 'dashbase.html' %}
+
+{% from 'includes/_formhelpers.html' import render_field %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    {% if session.logged_in %}
+    <h1 style="color: #17a2b8;" class="h2"><i data-feather="settings" style="height: 50px; width: 7%;"></i> {{session['Name']}}'s Dashboard </h1>
+    {% else %}
+    <h1 style="color: #17a2b8;" class="h2"><i data-feather="settings" style="height: 50px; width: 7%;"></i> Global Dashboard </h1>
+    {% endif %}
+    <div class="btn-toolbar mb-2 mb-md-0">
+      {% if session.logged_in %}
+      <div class="btn-group mr-2">
+        <button class="btn btn-sm btn-outline-secondary">Snapshots</button>
+        <button class="btn btn-sm btn-outline-secondary" onclick="location.href='/manage'">Manage</button>
+      </div>
+      <div class="btn-group mr-2">
+        <button class="btn btn-info" onclick="location.href='#'">
+          <span data-feather="code"></span>
+          Build Out
+        </button>
+        <button class="btn btn-success" onclick="location.href='/provision'">
+          <span data-feather="server"></span>
+          Provision
+        </button>
+      </div>
+      {% else %}
+      <button class="btn btn-info" onclick="location.href='/docs'">
+        <span data-feather="layers"></span>
+        Documentation
+      </button>
+      {% endif %}
+    </div>
+  </div>
+    {% block body %}{% endblock %}
+</main>
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+      feather.replace()
+    </script>

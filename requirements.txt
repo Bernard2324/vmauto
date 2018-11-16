@@ -1,0 +1,8 @@
+flask
+flask-mysqldb
+flask-ldap
+wtforms
+passlib
+jira
+celery
+redis

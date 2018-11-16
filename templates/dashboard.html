@@ -1,0 +1,71 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-1"><strong>{{session['Name']}}'s Virtual Machines</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>System Dashboard</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                Manage your Virtual Machines by selecting the VM from the ownership list below.  Jira tickets can also
+                be created if problems arise
+            </p>
+        </div>
+        <hr>
+        <button class="btn btn-info">Linux Management <i class="fa fa-diamond ml-1"></i></button>
+        <button class="btn btn-info">vCenter Administration <i class="fa fa-diamond ml-1"></i></button>
+    </div>
+
+    <div class="table-responsive">
+        <table id="dtVerticalScroll" width="100%" cellspacing="0" class="table table-striped table-hover table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th class="th-sm">Hostname<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">CPU Count<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">RAM (GB)<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">Disk Size (GB)<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">Power Status<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for vm in vms %}
+            <tr>
+                <td>{{vm.hostname}}</td>
+                <td>{{vm.cpu}}</td>
+                <td>{{vm.ram}}</td>
+                <td>{{vm.disk}}</td>
+                <td>{{vm.power}}</td>
+                <td width="10%">
+                    <div class="input-group mb-3">
+                        <form action="{{url_for('jira_issue', pin=vm.hostname)}}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Jira" class="btn btn-success">
+                        </form>
+                        <form action="{{url_for('build_console', pin=vm.hostname)}}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Console" class="btn btn-warning">
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    <form action="{{url_for('delete_vm', pin=vm.hostname)}}" method="post">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/addons/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+
+
+{% endblock %}

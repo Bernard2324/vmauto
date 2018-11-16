@@ -1,0 +1,31 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-3"><strong>System Login</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>Login to the System Dashboard</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                The Company Auto Provisioning Dashboard will allow you to administer your privately owned Virtual
+                Machines, using more advanced features that aren't available via command line.
+            </p>
+        </div>
+
+        <hr class="my-4 pb-2">
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" value={{request.form.username}}>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" value={{request.form.password}}>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

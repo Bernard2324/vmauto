@@ -1,0 +1,21 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-1"><strong>Advanced VM Administration</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>Terminal Emulation</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                Connect directly to your virtual machine from this site.  Launch Webex sessions for easy, centralized
+                access
+            </p>
+        </div>
+    </div>
+    <iframe src="https://pxe.sub.example.com" title="Virtual Machine Terminal" height="500" width="700" frameborder="0">
+
+    </iframe>
+{% endblock %}

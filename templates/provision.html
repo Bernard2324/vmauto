@@ -1,0 +1,37 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-3"><strong>{{session['Name']}}'s Provisioning Form</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>Provisioning Dashboard</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                Select the specification for your new Virtual Machines.
+            </p>
+        </div>
+
+        <hr class="my-4 pb-2">
+        <button class="btn btn-info">Performance Monitoring <i class="fa fa-diamond ml-1"></i></button>
+        <button class="btn btn-info">Device Management <i class="fa fa-diamond ml-1"></i></button>
+    </div>
+    <hr>
+    <form method="POST" action="">
+        <div class="form-group">
+            {{ render_field(form.hostname, class_="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ render_field(form.cpucount, class_="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ render_field(form.ram, class_="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ render_field(form.disk, class_="form-control") }}
+        </div>
+        <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+    </form>
+{% endblock %}

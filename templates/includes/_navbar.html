@@ -1,0 +1,32 @@
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span>Company Auto Provisioning</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if session.logged_in %}
+                <li class="nav-item"><a class="nav-link" href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="/dashboard"><span class="glyphicon glyphicon-cog"></span>Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/provision"><span class="glyphicon glyphicon-console"></span>Provision</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+            {% endif %}
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Additional Options</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Do something</a>
+              <a class="dropdown-item" href="#">VM Specifications</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>

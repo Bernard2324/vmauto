@@ -1,0 +1,82 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-1"><strong>Chef Node Management</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>Administration</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                Manage Chef Nodes by modifying roles & run lists, removing nodes from Chef,
+                or forcing nodes to re-Chef
+            </p>
+        </div>
+        <hr>
+        <button class="btn btn-info">Linux Management <i class="fa fa-diamond ml-1"></i></button>
+        <button class="btn btn-info">vCenter Administration <i class="fa fa-diamond ml-1"></i></button>
+    </div>
+    <div class="table-responsive">
+        <table id="dtVerticalScroll" width="100%" cellspacing="0" class="table table-striped table-hover table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th class="th-sm">Name<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">Normal Attribute<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">Active Cookbooks<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">Environment<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th class="th-sm">Run List<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for node, chef in data.items() %}
+                <tr>
+                {% for key, value in data[node].items() %}
+                    {% if key == 'name' %}
+                        <td>{{value}}</td>
+                    {% elif key == 'normal' %}
+                        <td><div style="witdth: 300px; height: 50px; overflow-y:auto">
+                            <ol style="list-style-type: none">
+                                {% for m, k in value.iteritems() %}
+                                    <li>{{m}}</li>
+                                {% endfor %}
+                            </ol>
+                        </div></td>
+                    {% elif key == 'default' %}
+                        <td><div style="witdth: 300px; height: 50px; overflow-y:auto">
+                            <ol style="list-style-type: none">
+                                {% for m, k in value.iteritems() %}
+                                    <li>{{m}}</li>
+                                {% endfor %}
+                            </ol>
+                        </div></td>
+                    {% elif key == 'chef_environment' %}
+                        <td>{{value}}</td>
+                    {% elif key == 'run_list' %}
+                        <td>{{value}}</td>
+                    {% endif %}
+                {% endfor %}
+                        <td>
+                            <form action="" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="submit" value="Edit" class="btn btn-success">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="" method="post">
+                                  <input type="hidden" name="_method" value="DELETE">
+                                  <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>
+                        </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/addons/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'authdash.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center blue-grey lighten-5 ">
+        <!-- title -->
+        <h1 class="card-title h2-responsive font-bold mt-3"><strong>Company Auto-Provisioning Application</strong></h1>
+        <!-- Subtitle -->
+        <p class="pt-2 font-bold indigo-text"><strong>Make a Selection</strong></p>
+
+        <!-- Text -->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-3" style="max-width: 43rem; color: #17a2b8;">
+                The Auto-Provisioning application allows users to Manage their Virtual Machines by selecting the VM
+                from the ownership list below.  Jira tickets can also be created if problems arise
+            </p>
+        </div>
+
+        <hr class="my-4 pb-2">
+        {% if session.logged_in == NULL %}
+        <button onclick="location.href='/register'" class="btn btn-info" >Register <i class="fa fa-diamond ml-1"></i></button>
+        <button onclick="location.href='/login'" class="btn btn-info">Login <i class="fa fa-diamond ml-1"></i></button>
+        {% endif %}
+    </div>
+{% endblock %}
