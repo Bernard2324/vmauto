@@ -10,7 +10,7 @@ user owned databases, allows auto-provisioing (building/configuring) of VM's, VM
 - MySQL User and Inventory Managagement
 - gateone in-app ssh jumpbox
 - VMWare Session Ticket generation for in-app Web Console 
-- Chef Node Inventory view and management
+- Detailed Chef Node Inventory view and Management
 - Jira Ticket Creation for VM's
 - LDAP Authentication
 
