@@ -214,9 +214,9 @@ def chefnodes():
 	node_data = {}
 
 	# Information
-	chef_server = 'https://chef.usa.example.com/organizations/example'
+	chef_server = 'https://chef.sub.example.com/organizations/example'
 
-	with ChefAPI(chef_server, 'adminuser.pem', 'mgreen', ssl_verify=False):
+	with ChefAPI(chef_server, 'adminuser.pem', 'admin', ssl_verify=False):
 		for node in Node.list():
 			nodeobject = Node(node)
 			node_data[node] = nodeobject.to_dict()
