@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/Bernard2324/vmauto.svg?branch=master)](https://travis-ci.org/Bernard2324/vmauto)
-# vmauto
+# vmauto [![Build Status](https://travis-ci.org/Bernard2324/vmauto.svg?branch=master)](https://travis-ci.org/Bernard2324/vmauto)
 VM Auto-Provisioning Web Application for VMWare
 
 ## What is it?
