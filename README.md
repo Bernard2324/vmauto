@@ -1,14 +1,14 @@
 # vmauto [![Build Status](https://travis-ci.org/Bernard2324/vmauto.svg?branch=master)](https://travis-ci.org/Bernard2324/vmauto)
-VM Auto-Provisioning Web Application for VMWare
+VM Auto-Provisioning Web Application for VMWare, XenServer, Google Cloud, and/or AWS
 
 ## What is it?
 This is a VM Auto-Provisioning Web Application, built with the Python Flask framework.  It allows company personnel, who otherwise would
-not have access to VMWare vCenter, to Auto-Provision VM's via a centralized management platform.  This web application keeps record of 
-user owned databases, allows auto-provisioing (building/configuring) of VM's, VM Specification Selection, and more.
+not have access to VM Provisioning Platforms (VMWare vCenter, XenServer, Gcloud, AWS) to Auto-Provision VM's via a centralized management platform.  For personnel that already have access, it provides an automated platform and centralized management environment.  This web application keeps record of 
+user owned VM's accross platforms, allows auto-provisioing (building/configuring) of VM's, VM Specification Selection, and more.
 
 ## What are some Features of this Web Application?
-- MySQL User and Inventory Managagement
-- gateone in-app ssh jumpbox
+- MySQL User and Inventory Managagement (May change to Maria)
+- gateone in-app ssh jumpbox (I may remove this)
 - VMWare Session Ticket generation for in-app Web Console 
 - Detailed Chef Node Inventory view and Management
 - Jira Ticket Creation for VM's
@@ -16,18 +16,27 @@ user owned databases, allows auto-provisioing (building/configuring) of VM's, VM
 
 ## Is this project complete?
 No, there is a lot more that needs to be done.  Certain features not yet implemented are:
-- Zoom/Webex Integration (Sharing)
-- Snapshot Management
+- Zoom/Webex Integration (Sharing) (THIS WILL DEFINITELY BE REMOVED)
+- Snapshot Management (Only taking - not deleting)
 - VM Power On/Off
-- Chef Cookbook Pairing for Provisioned VM's
+- Usage of Terraform or other provisioning/configuration management solutions to provision to pre-defined roles.  You will not be able to define the roles, or config the management apps from this webapp.
+- Support for XenServer, GCloud, and AWS provisioning using Terraform
+- Support for Networking Servers Together
+- Support for Building Proxied Environment
+- Caching objects with Pickle for improved performance, and less frequent API calls
+- XenServer VM Console Forwarding (https://developer-docs.citrix.com/projects/xenserver-sdk/en/7.4/xs-api-extensions/)
+- Management of VM's for several platforms.  Not just one, but the ability to config provisioning and management for several platforms, on which your VM's live.
+- Provisioning local, lightweight testbeds, using container solutions (docker only).
+- Front End vs Back End hierarchy
+- SQLAlchemy for more advanced DB Management
+- Logging
 
 ## Is this Web Application Secure?
 I'm honestly not sure how secure it is; I'm simply not there yet!
 
 ## Suggestions for Implementation
 I would highly suggest using this allong with a working PXE Booting solution.  That will provide a completely hands free VM Provisioning
-process for Non VMWare Administrators.  I would also use, if desired, SQLAlchemy to build and support a more advanced Database structure, 
-using more advanced queries.
+process for Non VMWare Administrators.  Alternatively, golden images can be created for supported distros.
 
 ## How can I help?
 In any way you want!  Any suggestions, support, or improvement is welcome!
