@@ -9,14 +9,13 @@ user owned VM's accross platforms, allows auto-provisioing (building/configuring
 ## What are some Features of this Web Application?
 - MySQL User and Inventory Managagement (May change to Maria)
 - gateone in-app ssh jumpbox (I may remove this)
-- VMWare Session Ticket generation for in-app Web Console 
-- Detailed Chef Node Inventory view and Management
+- In-app Web Console for all supported Platforms 
+- Support provisioning with Configuration/Provisioning Management tools.
 - Jira Ticket Creation for VM's
 - LDAP Authentication
 
 ## Is this project complete?
 No, there is a lot more that needs to be done.  Certain features not yet implemented are:
-- Zoom/Webex Integration (Sharing) (THIS WILL DEFINITELY BE REMOVED)
 - Snapshot Management (Only taking - not deleting)
 - VM Power On/Off
 - Usage of Terraform or other provisioning/configuration management solutions to provision to pre-defined roles.  You will not be able to define the roles, or config the management apps from this webapp.
