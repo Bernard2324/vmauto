@@ -29,6 +29,7 @@ No, there is a lot more that needs to be done.  Certain features not yet impleme
 - Front End vs Back End hierarchy
 - SQLAlchemy for more advanced DB Management
 - Logging
+- Python3.6+ ONLY
 
 ## Is this Web Application Secure?
 I'm honestly not sure how secure it is; I'm simply not there yet!
