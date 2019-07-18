@@ -1,4 +1,4 @@
-# VMAuto [![Build Status](https://travis-ci.org/Bernard2324/vmauto.svg?branch=master)](https://travis-ci.org/Bernard2324/vmauto)
+# VMauto [![Build Status](https://travis-ci.org/Bernard2324/vmauto.svg?branch=master)](https://travis-ci.org/Bernard2324/vmauto)
 VM Auto-Provisioning Web Application for VMWare, XenServer, Google Cloud, and/or AWS
 
 ## What is it?
