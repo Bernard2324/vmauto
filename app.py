@@ -1,18 +1,16 @@
-from flask import Flask, render_template, flash, redirect, url_for, logging, request, session, send_from_directory, g
+from flask import Flask, render_template, redirect, url_for, request, session, send_from_directory, g
 from flask_mysqldb import MySQL
-from example_auto_provision.create.create_ticket import ExampleJira
-from wtforms import Form, StringField, IntegerField, PasswordField, validators, SelectField, TextAreaField
+from provisioner.core.notifications.create_ticket import ExampleJira
+from wtforms import Form, StringField, PasswordField, validators, SelectField, TextAreaField
 from passlib.hash import sha256_crypt
 from functools import wraps
-from example_auto_provision.create.create_vm import CreateExhaustiveVM
-from utilities.authentication import DomainAuthentication
-from utilities.vm_session_ticket import uri
+from provisioner.vmware.create_vm import CreateExhaustiveVM
+from provisioner.core.utilities.authentication import DomainAuthentication
+from provisioner.core.utilities.vm_session_ticket import uri
 from chef import ChefAPI, Node
 from celery import Celery
-from celery.result import AsyncResult
 
 import os
-import json
 
 
 app = Flask(__name__)

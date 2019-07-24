@@ -1,9 +1,6 @@
-import os
-import tempfile
-import pytest
 import re
 
-from utilities.vm_session_ticket import uri
+from provisioner.core.utilities.vm_session_ticket import uri
 
 def test_session_ticket():
     """
