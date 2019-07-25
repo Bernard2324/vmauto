@@ -86,6 +86,10 @@ config["FLOPPY_DATACENTER_NAME"] = config["VM_DATACENTER_NAME"]
 config["FLOPPY_DATASTORE_ROOT_PATH"] = config["BACKENDS_DATASTORE_ROOT_PATH"] + "/floppy"
 config["FLOPPY_DATASTORE_PATH"] = config["FLOPPY_DATASTORE_ROOT_PATH"] + "/fdboot.img"
 
+# Xen Configuration
+config["XenServer"] = 'xen.production.example.com'
+config["XenUser"] = 'xenadmin'
+config["XenPassword"] = 'abc123'
 
 class Testbed(object):
     def __init__(self):
