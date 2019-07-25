@@ -1,11 +1,10 @@
 flask
 flask-mysqldb
+Flask-SQLAlchemy
 flask-ldap
 wtforms
 passlib
 jira
-celery
-redis
 pyVmomi >= 6.7
 suds ; python_version < '3'
 suds-jurko ; python_version >= '3.0'
@@ -15,3 +14,6 @@ vmc-client-bindings == 1.2.0
 vapi-vmc-client
 nsx-policy-python-sdk
 vmc-app-python-sdk
+XenApi
+python-terraform
+boto3
