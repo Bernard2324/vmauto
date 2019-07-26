@@ -1,12 +1,12 @@
 import XenAPI
-from provisioner.core.config import testbed
+from provisioner.core.config import configmanager
 from provisioner.core.utilities.cache import CheckCache
 
 
 class XenConnectionMeta(type):
-    __host_string = testbed.config['XenServer']
-    __user = testbed.config['XenUser']
-    __password = testbed.config['XenPassword']
+    __host_string = configmanager.config['XenServer']
+    __user = configmanager.config['XenUser']
+    __password = configmanager.config['XenPassword']
     __session = XenAPI.Session(__host_string)
     __authenticated_session = __session.xenapi.login_with_password(__user, __password)
 

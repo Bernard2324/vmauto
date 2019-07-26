@@ -91,7 +91,8 @@ config["XenServer"] = 'xen.production.example.com'
 config["XenUser"] = 'xenadmin'
 config["XenPassword"] = 'abc123'
 
-class Testbed(object):
+
+class WebConfig(object):
     def __init__(self):
         self.config = {}
         self.entities = {}
@@ -116,7 +117,7 @@ class Testbed(object):
 
     def to_config_string(self):
         s = ["=" * 79,
-             "Testbed Configuration:",
+             "WebConfig Configuration:",
              "=" * 79]
         s += ["   {}: {}".format(k, self.config[k])
               for k in sorted(self.config.keys())]
@@ -125,7 +126,7 @@ class Testbed(object):
 
     def to_entities_string(self):
         s = ["=" * 79,
-             "Testbed Entities:",
+             "WebConfig Entities:",
              "=" * 79]
         s += ["   {}: {}".format(k, self.entities[k])
               for k in sorted(self.entities.keys())]
@@ -137,7 +138,7 @@ class Testbed(object):
                          self.to_entities_string())
 
 
-_testbed = Testbed()
+_testbed = WebConfig()
 _testbed.config.update(config)
 
 

@@ -30,7 +30,7 @@ from com.vmware.vcenter.vm.hardware_client import (
 
 
 # provisioner
-from provisioner.core.config import testbed
+from provisioner.core.config import configmanager
 from provisioner.core.connection.baseutilities import pp
 from provisioner.core.connection.connectionhelpers import get_distributed_network_backing, \
     get_standard_network_backing, get_placement_spec_for_resource_pool, get_vm, get_unverified_session
@@ -55,18 +55,18 @@ class CreateExhaustiveVM(object):
         # Execute the sample in standalone mode.
         if not self.client:
             session = get_unverified_session()
-            self.client = create_vsphere_client(server=testbed.config['SERVER'],
-                                                username=testbed.config['USERNAME'],
-                                                password=testbed.config['PASSWORD'],
+            self.client = create_vsphere_client(server=configmanager.config['SERVER'],
+                                                username=configmanager.config['USERNAME'],
+                                                password=configmanager.config['PASSWORD'],
                                                 session=session)
 
     def run(self):
         # Get a placement spec
-        datacenter_name = testbed.config['VM_DATACENTER_NAME']
-        vm_folder_name = testbed.config['VM_FOLDER2_NAME']
-        datastore_name = testbed.config['VM_DATASTORE_NAME']
-        std_portgroup_name = testbed.config['STDPORTGROUP_NAME']
-        dv_portgroup_name = testbed.config['VDPORTGROUP1_NAME']
+        datacenter_name = configmanager.config['VM_DATACENTER_NAME']
+        vm_folder_name = configmanager.config['VM_FOLDER2_NAME']
+        datastore_name = configmanager.config['VM_DATASTORE_NAME']
+        std_portgroup_name = configmanager.config['STDPORTGROUP_NAME']
+        dv_portgroup_name = configmanager.config['VDPORTGROUP1_NAME']
 
         if not self.placement_spec:
             self.placement_spec = get_placement_spec_for_resource_pool(
@@ -89,10 +89,10 @@ class CreateExhaustiveVM(object):
                 dv_portgroup_name,
                 datacenter_name)
 
-        guest_os = testbed.config['VM_GUESTOS']
-        iso_datastore_path = testbed.config['ISO_DATASTORE_PATH']
+        guest_os = configmanager.config['VM_GUESTOS']
+        iso_datastore_path = configmanager.config['ISO_DATASTORE_PATH']
         serial_port_network_location = \
-            testbed.config['SERIAL_PORT_NETWORK_SERVER_LOCATION']
+            configmanager.config['SERIAL_PORT_NETWORK_SERVER_LOCATION']
 
         GiB = 1024 * 1024 * 1024
         GiBMemory = 1024

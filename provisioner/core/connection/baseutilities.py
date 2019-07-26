@@ -13,7 +13,7 @@ class Context(object):
     """Class that holds common context for running vcenter samples."""
 
     def __init__(self, testbed, service_instance, client):
-        # Testbed configuration
+        # WebConfig configuration
         self._testbed = testbed
 
         # pyVmomi SOAP Service Instance
@@ -66,7 +66,7 @@ class Context(object):
 
     def to_option_string(self):
         s = ['=' * 79,
-             'Testbed Options:',
+             'WebConfig Options:',
              '=' * 79]
         s += ['   {}: {}'.format(k, self._option[k])
               for k in sorted(self._option.keys())]

@@ -1,31 +1,32 @@
 from flask import Flask, render_template, redirect, url_for, request, session, send_from_directory, g
-from flask_mysqldb import MySQL
-from provisioner.core.notifications.create_ticket import ExampleJira
 from wtforms import Form, StringField, PasswordField, validators, SelectField, TextAreaField
-from passlib.hash import sha256_crypt
-from functools import wraps
-from provisioner.vmware.create_vm import CreateExhaustiveVM
 from provisioner.core.utilities.authentication import DomainAuthentication
+from provisioner.core.notifications.create_ticket import ExampleJira
 from provisioner.core.utilities.vm_session_ticket import uri
-from chef import ChefAPI, Node
+from provisioner.vmware.create_vm import CreateExhaustiveVM
+from provisioner.core.config.configmanager import WebConfig
+from provisioner.core.queue.jobs import JobQueue
+from passlib.hash import sha256_crypt
+from flask_mysqldb import MySQL
+from functools import wraps
 from celery import Celery
-
 import os
 
 
 app = Flask(__name__)
 
 # MySQL Section
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'abc123'
-app.config['MYSQL_DB'] = 'vmprovision'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+app.config['MYSQL_HOST'] = WebConfig['MYSQL_SERVER']
+app.config['MYSQL_USER'] = WebConfig['MYSQL_USER']
+app.config['MYSQL_PASSWORD'] = WebConfig['MYSQL_PASSWORD']
+app.config['MYSQL_DB'] = WebConfig['MYSQL_DATABASE_NAME']
+app.config['MYSQL_CURSORCLASS'] = WebConfig['MYSQL_CURSORCLASS']
 
 # Celery
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
+celery = JobQueue(app)
 
 # Init MySQL
 mysql = MySQL(app)
@@ -34,7 +35,7 @@ mysql = MySQL(app)
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
-app.secret_key = 'abc123'
+app.secret_key = WebConfig['APP_SECRET_KEY']
 
 username = None
 
@@ -206,8 +207,7 @@ def dashboard():
 
 
 # View Dashboard
-@app.route('/chef_admin')
-@is_logged_in
+@celery.task(name='tasks.chefnodes')
 def chefnodes():
 	node_data = {}
 
@@ -219,6 +219,21 @@ def chefnodes():
 			nodeobject = Node(node)
 			node_data[node] = nodeobject.to_dict()
 
+	return node_data
+
+
+@app.route('/chef_admin')
+@is_logged_in
+def show_chefnodes():
+	node_data = chefnodes.AsyncResult().get(timeout=10)
+	return render_template('chef_admin.html', data=node_data)
+
+
+@app.route('/chef_admin')
+@is_logged_in
+def chef_call():
+	chefnodes.add_async(queue='high_priority')
+	node_data = chefnodes.AsyncResult().get(timeout=10)
 	return render_template('chef_admin.html', data=node_data)
 
 
@@ -231,6 +246,7 @@ class VmCreate(Form):
 
 
 # Create VM
+@celery.task(name='provision')
 @app.route('/provision', methods=['GET', 'POST'])
 @is_logged_in
 def provision():
